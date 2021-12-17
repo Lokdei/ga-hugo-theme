@@ -1,3 +1,16 @@
 <div style="text-align: center; height: 75px; padding:1px;   text-transform:capitalize; background-color:#42a5f5; color:white">
      <h1 style="margin-bottom:-10px; "><a style="text-decoration: none; color:white;"href="/">{{.Template}} Template - {{.Kind}}</a></h1>
 </div>
+<div>
+     <p>
+          Kind: {{ .Kind }} <br>
+          The page’s kind. Possible return values are 
+          <ul>
+               <li>page</li>
+               <li>home</li>
+               <li>section</li>
+               <li>taxonomy</li>
+               <li>term</li>
+          </ul>
+     </p>
+</div>

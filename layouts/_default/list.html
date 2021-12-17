@@ -7,11 +7,40 @@
 </head>
 <body>
      {{ partial "header" (dict "Kind" .Kind "Template" "List") }}
+
+     <div style="border: 2px solid black;">
+     <h2>Page Variables</h2>
+     <p>Is Home: {{ .IsHome }}</p>
+     <p>Is Page: {{ .IsPage }}</p>
+     <p>Is Section {{ .IsSection }}</p>
+
+     <p>
+          Type: {{ .Type }} <br>
+          The content type of the content (e.g., posts).
+          A content type is a way to organize your content. Hugo resolves the content type from either the type in front matter or, if not set, the first directory in the file path. E.g. content/blog/my-first-event.md will be of type blog if no type set.
+     </p>
+
+     <h2>Section Variables and Methods</h2>
+     <p>CurrentSection: {{ .CurrentSection }}</p>
+     <p>FirstSection {{ .FirstSection }}</p>
+     <p>Section: {{ .Section }}</p>
+
+     <h2>Other</h2>
+     <p>
+          Pages {{ .Pages }} <br>
+          Collection of regular pages and only first-level section pages under the current list page.
+     </p>
+     <p>
+          RegularPages {{ .RegularPages}} <br>
+          Collection of only regular pages under the current list page. This excludes regular pages in nested sections/list pages (those are subdirectories with an _index.md file.
+     </p>
+     </div>
+
      {{.Content}}
      {{ range .Pages }}
           <div style="border: 1px solid black; margin:10px; padding:10px; ">
                <div style="font-size:20px;">
-                    <a href="{{.URL}}">{{.Title}}</a>
+                    <a href="{{ .Permalink }}">{{.Title}}</a>
                </div>
                <div style="color:grey; font-size:16px;">{{ dateFormat "Monday, Jan 2, 2006" .Date }}</div>
                <div style="color:grey; font-size:16px;">{{ if .Params.tags }}<strong>Tags:</strong> {{range .Params.tags}}<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> {{end}}{{end}}</div>
